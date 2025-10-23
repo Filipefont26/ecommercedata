@@ -55,7 +55,7 @@ plt.show()
 
 clientes_por_cidade =df['customer_city'].value_counts().head(10)
 plt.figure(figsize=(12,5))
-clientes_por_cidade(kind ='bar', color ='skyblue', edgecolor = 'black')
+clientes_por_cidade.plot(kind='bar', color='skyblue', edgecolor='black')
 plt.title('top 10 cidades com mais clientes')
 plt.xlabel('cidade')
 plt.ylabel('Quantidade de clientes')
@@ -63,3 +63,21 @@ plt.grid(axis='y',linestyle = "--", alpha=0.7)
 plt.show()
 
 
+regioes = {
+    'AC': 'Norte', 'AP': 'Norte', 'AM': 'Norte', 'PA': 'Norte', 'RO': 'Norte', 'RR': 'Norte', 'TO': 'Norte',
+    'AL': 'Nordeste', 'BA': 'Nordeste', 'CE': 'Nordeste', 'MA': 'Nordeste', 'PB': 'Nordeste',
+    'PE': 'Nordeste', 'PI': 'Nordeste', 'RN': 'Nordeste', 'SE': 'Nordeste',
+    'DF': 'Centro-Oeste', 'GO': 'Centro-Oeste', 'MT': 'Centro-Oeste', 'MS': 'Centro-Oeste',
+    'ES': 'Sudeste', 'MG': 'Sudeste', 'RJ': 'Sudeste', 'SP': 'Sudeste',
+    'PR': 'Sul', 'RS': 'Sul', 'SC': 'Sul'}
+
+df['customer_region'] = df['customer_state'].map(regioes)
+clientes_por_região = df['customer_region'].value_counts()
+
+#Gráfico de pizza
+
+plt.figure(figsize=(7, 7))
+clientes_por_região .plot(kind='pie', autopct='%1.1f%%', startangle=90, colors=['#66b3ff','#99ff99','#ffcc99','#ff9999','#c2c2f0'])
+plt.title('Distribuição de Clientes por Região do Brasil')
+plt.ylabel('')
+plt.show()
