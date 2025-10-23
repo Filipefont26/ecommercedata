@@ -1,5 +1,5 @@
 import pandas as pd 
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 #ver todas as colunas e tipos de dados 
 df  = pd.read_csv("olist_customers_dataset.csv")
@@ -40,8 +40,26 @@ df['customer_region'] = df['customer_state'].map(regioes)
 clientes_por_região = df['customer_region'].value_counts(normalize=True)*100
 print(f"clientes por regiao :{clientes_por_região.round(2)}")
 
+#Visualização dos Dados
+
+clientes_por_estado = df['customer_state']. value_counts().head(10)
+plt.figure(figsize=(10,5))
+clientes_por_estado.plot(kind='bar', color='skyblue', edgecolor='black')
+plt.title('Top 10 Estados com Mais Clientes')
+plt.xlabel('Estado')
+plt.ylabel('Quantidade de clientes')
+plt.xticks(rotation=45)
+plt.grid(axis='y', linestyle = '--', alpha=0.7)
+plt.show()
 
 
+clientes_por_cidade =df['customer_city'].value_counts().head(10)
+plt.figure(figsize=(12,5))
+clientes_por_cidade(kind ='bar', color ='skyblue', edgecolor = 'black')
+plt.title('top 10 cidades com mais clientes')
+plt.xlabel('cidade')
+plt.ylabel('Quantidade de clientes')
+plt.grid(axis='y',linestyle = "--", alpha=0.7)
+plt.show()
 
 
-                           
